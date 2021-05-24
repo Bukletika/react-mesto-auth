@@ -4,13 +4,12 @@ function Card({card, onCardClick}) {
 
   function handleClick() {
     onCardClick(card);
-
   }
 
     return (
       <li className="elements__item element">
         <button className="element__trash" aria-label="Удалить" title="Удалить"></button>
-        <img className="element__image" src={card.link} onClick={handleClick}/>
+        <img className="element__image" src={card.link} onClick={handleClick} alt={card.name} />
         <div className="element__info">
           <h2 className="element__title">{card.name}</h2>
           <div className="element__like-container">
