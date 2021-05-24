@@ -1,7 +1,7 @@
 import React from 'react';
-import yandexAutotestImg from '../images/default-yandex-autotest.jpg'
-import api from '../utils/api'
-import Card from './Card'
+import yandexAutotestImg from '../images/default-yandex-autotest.jpg';
+import api from '../utils/api';
+import Card from './Card';
 
 function Main(props) {
 
@@ -28,18 +28,11 @@ function Main(props) {
 
       api.getInitialCards()
       .then((result) => {
-        setCards(result.map((item)=> ({
-          id: item._id,
-          name: item.name,
-          link: item.link,
-          likes: item.likes
-        }))
-        );
+        setCards(result)
       })
       .catch((err) => {
         console.log(`Ошибка получения карточек: ${err}`)
       })
-
 
     }, []);
 
@@ -66,7 +59,7 @@ function Main(props) {
               cards.map((props)=> {
                 return(
                   <Card
-                  key={props.id}
+                  key={props._id}
                   card={props}
                   onCardClick={handleCardClick}
                   />
