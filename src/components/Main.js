@@ -1,5 +1,4 @@
 import React from 'react';
-import yandexAutotestImg from '../images/default-yandex-autotest.jpg';
 import api from '../utils/api';
 import Card from './Card';
 
@@ -12,31 +11,18 @@ function Main(props) {
     const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
-      api.getInitialProfile()
-      .then((result) => {
-        setUserAvatar(result.avatar);
-        setUserName(result.name);
-        setUserDescription(result.about);
+      Promise.all([api.getInitialProfile(), api.getInitialCards()])
+      .then(([userData, cardsData]) => {
+        setUserAvatar(userData.avatar);
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setCards(cardsData);
       })
       .catch((err) => {
-        console.log(`Ошибка получения профиля: ${err}`)
-      })
-    }, [])
-
-
-    React.useEffect(() => {
-
-      api.getInitialCards()
-      .then((result) => {
-        setCards(result)
-      })
-      .catch((err) => {
-        console.log(`Ошибка получения карточек: ${err}`)
+        console.log(`Ошибка: ${err}`)
       })
 
     }, []);
-
-
 
     return (
       <main className="content">
