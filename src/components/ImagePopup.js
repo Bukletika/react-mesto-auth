@@ -8,7 +8,6 @@ function ImagePopup(props) {
     React.useEffect(() => {
 
       if(Object.keys(props.card).length !== 0) {
-
         function handleEscClose (evt) {
           if(evt.key === 'Escape'){
             props.onClose()
