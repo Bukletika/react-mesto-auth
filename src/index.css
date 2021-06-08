@@ -29,6 +29,7 @@
 @import url(./blocks/element/__like-container/element__like-container.css);
 @import url(./blocks/element/__like-counter/element__like-counter.css);
 @import url(./blocks/element/__trash/element__trash.css);
+@import url(./blocks/element/__trash/_hidden/element__trash_hidden.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/page/__footer/page__footer.css);
