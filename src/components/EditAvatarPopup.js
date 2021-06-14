@@ -23,7 +23,7 @@ function EditAvatarPopup(props) {
             <span id="avatar-link-error" className="popup__error"></span>
           </fieldset>
         }
-        isSubmitted={props.isSubmitted}
+        isSubmitting={props.isSubmitting}
         submitBtnText="Сохранить"
         submitBtnLoadText="Сохранение"
         isOpen={props.isOpen}

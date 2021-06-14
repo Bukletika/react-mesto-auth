@@ -33,7 +33,7 @@ function AddPlacePopup(props) {
             <span id="card-link-error" className="popup__error"></span>
           </fieldset>
         }
-        isSubmitted={props.isSubmitted}
+        isSubmitting={props.isSubmitting}
         submitBtnText="Создать"
         submitBtnLoadText="Сохранение..."
         isOpen={props.isOpen}
