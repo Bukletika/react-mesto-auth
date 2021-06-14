@@ -5,7 +5,7 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext';
 function EditProfilePopup(props) {
 
   const currentUserData = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState('test');
+  const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
 
   React.useEffect(() => {
@@ -44,7 +44,7 @@ function EditProfilePopup(props) {
             <span id="profile-about-error" className="popup__error"></span>
           </fieldset>
         }
-        isSubmitted={props.isSubmitted}
+        isSubmitting={props.isSubmitting}
         submitBtnText="Сохранить"
         submitBtnLoadText="Сохранение..."
         isOpen={props.isOpen}

@@ -17,7 +17,7 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] =  React.useState({});
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
 
@@ -56,44 +56,49 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+    api.changeLikeCardStatus(card._id, !isLiked)
+    .then((newCard) => {
       setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
-    }).catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
   }
 
   function handleUpdateUser(data) {
-    setIsSubmitted(true);
-    api.editProfile(data).then((result) => {
+    setIsSubmitting(true);
+    api.editProfile(data)
+    .then((result) => {
       setCurrentUser(result);
       closeAllPopups();
     })
     .catch((err) => console.log(err))
     .finally(() => {
-      setIsSubmitted(false);
+      setIsSubmitting(false);
     })
   }
 
   function handleUpdateAvatar(data) {
-    setIsSubmitted(true);
-    api.editProfileAvatar(data).then((result) => {
+    setIsSubmitting(true);
+    api.editProfileAvatar(data)
+    .then((result) => {
       setCurrentUser(result);
       closeAllPopups();
     })
     .catch((err) => console.log(err))
     .finally(() => {
-      setIsSubmitted(false);
+      setIsSubmitting(false);
     })
   }
 
   function handleAddPlaceSubmit(data) {
-    setIsSubmitted(true);
-    api.addCard(data).then((newCard) => {
+    setIsSubmitting(true);
+    api.addCard(data)
+    .then((newCard) => {
       setCards([newCard, ...cards]);
       closeAllPopups();
     })
     .catch((err) => console.log(err))
     .finally(() => {
-      setIsSubmitted(false);
+      setIsSubmitting(false);
     })
   }
 
@@ -110,7 +115,6 @@ function App() {
   }, []);
 
   return (
-    <>
       <CurrentUserContext.Provider value={currentUser}>
       <div className="page__container">
         <Header />
@@ -136,16 +140,15 @@ function App() {
        submitBtnText="Да"
       />
 
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isSubmitted={isSubmitted}/>
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isSubmitted={isSubmitted}/>
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isSubmitted={isSubmitted}/>
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isSubmitting={isSubmitting}/>
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isSubmitting={isSubmitting}/>
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isSubmitting={isSubmitting}/>
 
       <ImagePopup
         card={selectedCard}
         onClose={closeAllPopups}
       />
       </CurrentUserContext.Provider>
-    </>
   );
 }
 
