@@ -1,18 +1,17 @@
 import React from 'react';
 import Card from './Card';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
-import {CurrentCardsContext} from '../contexts/CurrentCardsContext';
+import Footer from './Footer';
 
 function Main(props) {
 
     const currentUserData = React.useContext(CurrentUserContext);
-    const currentCardsData = React.useContext(CurrentCardsContext);
-
     const handleCardClick = props.handleCardClick;
     const handleCardLike = props.handleCardLike;
     const handleDeleteClick = props.onCardDelete;
 
     return (
+      <>
       <main className="content">
         <section className="profile">
           <div className="profile__avatar">
@@ -30,7 +29,7 @@ function Main(props) {
         <section className="elements">
           <ul className="elements__list">
             {
-              currentCardsData.map((props)=> {
+              props.cards.map((props)=> {
                 return(
                   <Card
                   key={props._id}
@@ -46,6 +45,8 @@ function Main(props) {
         </section>
 
       </main>
+      <Footer />
+     </>
     );
   }
 
