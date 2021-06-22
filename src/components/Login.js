@@ -24,7 +24,7 @@ function Login({ handleLogin }) {
 
   return (
     <div className='auth'>
-      <form className="form auth__form" name={`edit-login`} onSubmit={handleSubmit} noValidate>
+      <form className="form auth__form" name={`edit-login`} onSubmit={handleSubmit} >
         <div className="auth__container">
           <h2 className="form__heading form__heading_type_auth">Вход</h2>
           <input className="form__item form__item_el_mail" id="login-mail" value={data.email || ''} onChange={handleChange} name="email" type="email" placeholder="Email" minLength="2" required />

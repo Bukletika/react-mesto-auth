@@ -3,6 +3,7 @@ import { Route, Switch, Redirect, useHistory  } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute';
 import Header from './Header';
 import Main from './Main';
+import Footer from './Footer';
 import Register from './Register';
 import Login from './Login';
 import EditProfilePopup from './EditProfilePopup';
@@ -137,7 +138,10 @@ function App() {
           setLoggedIn(true);
           history.push('/main');
         }
-      });
+      })
+      .catch((err) => {
+        console.log(`Ошибка удаления карточки: ${err}`)
+      })
 
     }
   }
@@ -231,7 +235,7 @@ function App() {
               )}
             </Route>
           </Switch>
-
+          <Footer />
         </div>
 
         <InfoTooltip onClose={closeAllPopups} isOpen={isInfoOpen} authInfoStatus={authInfoStatus} />

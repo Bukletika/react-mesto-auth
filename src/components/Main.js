@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from './Card';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
-import Footer from './Footer';
 
 function Main(props) {
 
@@ -45,7 +44,7 @@ function Main(props) {
         </section>
 
       </main>
-      <Footer />
+
      </>
     );
   }
