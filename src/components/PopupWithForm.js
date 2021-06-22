@@ -32,7 +32,7 @@ function PopupWithForm(props) {
       <div className={`popup popup_type_${props.name} ${className}`} onClick={props.onClose}>
         <div className="popup__container" onClick={(evt)=> {evt.stopPropagation()}}>
             <button className="popup__close" type="button" onClick={props.onClose}><img className="popup__close-img" src={closePopup} alt="Закрыть окно" /></button>
-            <form className={`form form-${props.name} popup__form`} onSubmit={props.onSubmit} name={`edit-${props.name}`} noValidate>
+            <form className={`form form-${props.name} popup__form`} onSubmit={props.onSubmit} name={`edit-${props.name}`} >
             <h2 className="form__heading">{props.title}</h2>
             {props.children}
             <button className="form__button popup__button" disabled={props.isSubmitting} type="submit">{buttonText}</button>

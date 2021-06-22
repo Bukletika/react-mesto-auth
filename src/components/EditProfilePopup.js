@@ -11,7 +11,7 @@ function EditProfilePopup(props) {
   React.useEffect(() => {
     setName(currentUserData.name);
     setDescription(currentUserData.about);
-  }, [currentUserData]);
+  }, [currentUserData, props.isOpen]);
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -36,21 +36,20 @@ function EditProfilePopup(props) {
       <PopupWithForm
         title="Редактировать профиль"
         name="profile"
-        children={
-          <fieldset className="form__author">
-            <input className="form__item popup__input form__item_el_name" value={name || ''} onChange={handleChangeName} id="profile-name" name="name" type="text" placeholder="Имя" minLength="2"  maxLength="40" required />
-            <span id="profile-name-error" className="popup__error">Вы пропустили это поле</span>
-            <input className="form__item popup__input form__item_el_about" onChange={handleChangeDescription} value={description || ''} id="profile-about" name="about" type="text" placeholder="О себе" minLength="2" maxLength="200" required />
-            <span id="profile-about-error" className="popup__error"></span>
-          </fieldset>
-        }
         isSubmitting={props.isSubmitting}
         submitBtnText="Сохранить"
         submitBtnLoadText="Сохранение..."
         isOpen={props.isOpen}
         onClose={props.onClose}
         onSubmit={handleSubmit}
-      />
+      >
+        <fieldset className="form__author">
+          <input className="form__item popup__input form__item_el_name" value={name || ''} onChange={handleChangeName} id="profile-name" name="name" type="text" placeholder="Имя" minLength="2"  maxLength="40" required />
+          <span id="profile-name-error" className="popup__error">Вы пропустили это поле</span>
+          <input className="form__item popup__input form__item_el_about" onChange={handleChangeDescription} value={description || ''} id="profile-about" name="about" type="text" placeholder="О себе" minLength="2" maxLength="200" required />
+          <span id="profile-about-error" className="popup__error"></span>
+        </fieldset>
+      </PopupWithForm>
 
     );
 }
